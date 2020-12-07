@@ -1,0 +1,36 @@
+.CommentForm {
+  width: 100%;
+  text-align: left;
+}
+
+.CommentForm legend {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.CommentForm input {
+  display: block;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.CommentForm button {
+  margin-top: 1em;
+}
+
+#btnAdd {
+  padding: 10px;
+  border: solid 1px black;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  color: white;
+  background-color: blue;
+}
+
+#btnAdd:disabled {
+  border: solid 1px darkgray;
+  font-weight: normal;
+  color: gray;
+  background-color: lightblue;
+}

@@ -1,0 +1,24 @@
+.PostView {
+  width: 100%;
+  text-align: left;
+}
+
+.PostView-Title {
+  display: inline-block;
+  text-align: left;
+  width: 90%;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.PostView-Description {
+  font-style: oblique;
+}
+
+.PostView-Edit {
+  display: inline-block;
+  text-align: right;
+  width: 10%;
+  font-size: 1em;
+  font-weight: normal;
+}

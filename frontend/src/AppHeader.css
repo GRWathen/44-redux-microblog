@@ -1,0 +1,13 @@
+.AppHeader {
+  padding: 1em;
+  background-color: lightgray;
+}
+
+.AppHeader-Title {
+  font-size: 3em;
+}
+
+.AppHeader-Link {
+  margin-right: 1em;
+  font-size: 0.8em;
+}
