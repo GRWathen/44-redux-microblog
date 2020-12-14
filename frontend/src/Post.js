@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-import './Post.css';
+import "./Post.css";
 
 function Post({ id, post }) {
     const link = `/${id}`;

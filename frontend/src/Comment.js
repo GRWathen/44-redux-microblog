@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import './Comment.css';
+import "./Comment.css";
 
 import { deleteComment } from "./actions.js";
 

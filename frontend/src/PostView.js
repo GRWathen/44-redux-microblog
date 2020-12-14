@@ -1,9 +1,9 @@
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import './PostView.css';
+import "./PostView.css";
 
-import CommentForm from './CommentForm.js';
+import CommentForm from "./CommentForm.js";
 import { deletePost } from "./actions.js";
 
 function PostView() {

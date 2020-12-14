@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
-import './PostForm.css';
+import "./PostForm.css";
 
 import { addPost, updatePost } from "./actions.js";
 

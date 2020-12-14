@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-import './HomePage.css';
+import "./HomePage.css";
 
 import Post from "./Post.js";
 

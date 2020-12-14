@@ -1,6 +1,6 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import './App.css';
+import "./App.css";
 
 import AppHeader from "./AppHeader.js";
 import HomePage from "./HomePage.js";
