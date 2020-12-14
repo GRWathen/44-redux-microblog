@@ -3,6 +3,9 @@ import { UPDATE_POST } from "./actionTypes.js";
 import { DELETE_POST } from "./actionTypes.js";
 import { ADD_COMMENT } from "./actionTypes.js";
 import { DELETE_COMMENT } from "./actionTypes.js";
+import { ADD_TITLE } from "./actionTypes.js";
+import { UPDATE_TITLE } from "./actionTypes.js";
+import { DELETE_TITLE } from "./actionTypes.js";
 
 export function addPost(id, obj) {
     return {
@@ -43,6 +46,32 @@ export function deleteComment(post, id) {
     return {
         type: DELETE_COMMENT, payload: {
             "post": post,
+            "id": id
+        }
+    };
+}
+
+export function addTitle(id, obj) {
+    return {
+        type: ADD_TITLE, payload: {
+            "id": id,
+            "obj": obj
+        }
+    };
+}
+
+export function updateTitle(id, title) {
+    return {
+        type: UPDATE_TITLE, payload: {
+            "id": id,
+            "title": title
+        }
+    };
+}
+
+export function deleteTitle(id) {
+    return {
+        type: DELETE_TITLE, payload: {
             "id": id
         }
     };

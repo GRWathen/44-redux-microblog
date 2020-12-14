@@ -5,12 +5,12 @@ import { v4 as uuidv4 } from "uuid";
 
 import "./PostForm.css";
 
-import { addPost, updatePost } from "./actions.js";
+import { addPost, updatePost, addTitle, updateTitle } from "./actions.js";
 
 function PostForm() {
     const dispatch = useDispatch();
     const posts = useSelector(function (store) {
-        return store;
+        return store.posts;
     });
 
     const initialState = {
@@ -42,9 +42,19 @@ function PostForm() {
         if (id === null) {
             key = uuidv4();
             dispatch(addPost(key, obj));
+            dispatch(addTitle(key, {
+                "id": key,
+                "title": title.value,
+                "description": description.value
+            }));
         }
         else {
             dispatch(updatePost(key, obj));
+            dispatch(updateTitle(key, {
+                "id": key,
+                "title": title.value,
+                "description": description.value
+            }));
         }
         setFormData(initialState);
         history.push("/");

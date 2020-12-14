@@ -9,7 +9,7 @@ import Comment from "./Comment.js";
 function CommentForm({ postID }) {
     const dispatch = useDispatch();
     const comments = useSelector(function (store) {
-        return store[postID].comments;
+        return store.posts[postID].comments;
     });
 
     const initialState = {

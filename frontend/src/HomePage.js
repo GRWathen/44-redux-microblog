@@ -6,7 +6,8 @@ import Post from "./Post.js";
 
 function HomePage() {
     const posts = useSelector(function (store) {
-        return store;
+        console.log(store);
+        return store.titles;
     });
 
     return (
@@ -16,8 +17,13 @@ function HomePage() {
             </div>
             <div>
                 {
+                    /*/
                     Object.keys(posts).map(function (post) {
                         return (<Post key={post} id={post} post={posts[post]} />);
+                    })
+                    //*/
+                    posts.map(function (post) {
+                        return (<Post key={post.id} id={post.id} post={post} />);
                     })
                 }
             </div>

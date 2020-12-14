@@ -1,45 +1,8 @@
-import { ADD_POST, UPDATE_POST, DELETE_POST } from "./actionTypes.js";
-import { ADD_COMMENT, DELETE_COMMENT } from "./actionTypes.js";
+import { combineReducers } from "redux";
 
-const INITIAL_STATE = {};
+import postsReducer from "./postsReducer.js";
+import titlesReducer from "./titlesReducer.js";
 
-function rootReducer(state = INITIAL_STATE, action) {
-    switch (action.type) {
-        case ADD_POST: {
-            const obj = action.payload.obj;
-            //obj["comments"] = {};
-            const newState = { ...state, [action.payload.id]: obj };
-            return newState;
-        }
-        case UPDATE_POST: {
-            const newState = { ...state };
-            newState[action.payload.id] = action.payload.post;
-            return newState;
-        }
-        case DELETE_POST: {
-            const newState = { ...state };
-            delete newState[action.payload.id];
-            return newState;
-        }
-        case ADD_COMMENT: {
-            const newState = { ...state };
-            const post = newState[action.payload.id];
-            let key = Date.now();
-            post["comments"][key] = action.payload.comment;
-            newState[action.payload.id] = post;
-            return newState;
-        }
-        case DELETE_COMMENT: {
-            const newState = { ...state };
-            const post = newState[action.payload.post];
-            delete post["comments"][action.payload.id];
-            newState[action.payload.post] = post;
-            return newState;
-        }
-        default: {
-            return state;
-        }
-    }
-}
+const rootReducer = combineReducers({posts: postsReducer, titles: titlesReducer})
 
 export default rootReducer;

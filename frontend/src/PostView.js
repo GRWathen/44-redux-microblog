@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import "./PostView.css";
 
 import CommentForm from "./CommentForm.js";
-import { deletePost } from "./actions.js";
+import { deletePost, deleteTitle } from "./actions.js";
 
 function PostView() {
     const dispatch = useDispatch();
     const posts = useSelector(function (store) {
-        return store;
+        return store.posts;
     });
 
     const history = useHistory();
@@ -31,6 +31,7 @@ function PostView() {
 
     function remove() {
         dispatch(deletePost(postID));
+        dispatch(deleteTitle(postID));
         history.push({
             pathname: "/",
             state: {
