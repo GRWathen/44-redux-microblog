@@ -1,14 +1,21 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./HomePage.css";
 
 import Post from "./Post.js";
+import { getPosts } from "./actions.js";
 
 function HomePage() {
+    const dispatch = useDispatch();
+
     const posts = useSelector(function (store) {
-        console.log(store);
         return store.titles;
     });
+
+    useEffect(() => {
+        dispatch(getPosts());
+    }, [dispatch]);
 
     return (
         <div className="HomePage">

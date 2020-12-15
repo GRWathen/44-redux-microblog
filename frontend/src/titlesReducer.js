@@ -1,9 +1,13 @@
-import { ADD_TITLE, UPDATE_TITLE, DELETE_TITLE } from "./actionTypes.js";
+import { LOAD_POSTS, ADD_TITLE, UPDATE_TITLE, DELETE_TITLE } from "./actionTypes.js";
 
 const INITIAL_STATE = [];
 
 function titlesReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
+        case LOAD_POSTS: {
+            const newState = [...action.payload.posts];
+            return newState;
+        }
         case ADD_TITLE: {
             const obj = action.payload.obj;
             const newState = [ ...state, obj ];
