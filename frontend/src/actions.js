@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { LOAD_POSTS } from "./actionTypes.js";
+import { LOAD_POST } from "./actionTypes.js";
 import { ADD_POST } from "./actionTypes.js";
 import { UPDATE_POST } from "./actionTypes.js";
 import { DELETE_POST } from "./actionTypes.js";
@@ -20,6 +21,21 @@ function gotPosts(posts) {
     return {
         type: LOAD_POSTS, payload: {
             "posts": posts
+        }
+    };
+}
+
+export function getPost(id) {
+    const result =  async function (dispatch) {
+        const res = await axios.get(`http://localhost:5000/api/posts/${id}`);
+        return dispatch(gotPost(res.data));
+    };
+    return result;
+}
+function gotPost(post) {
+    return {
+        type: LOAD_POST, payload: {
+            "post": post
         }
     };
 }

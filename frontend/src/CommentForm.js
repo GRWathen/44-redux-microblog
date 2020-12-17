@@ -50,7 +50,7 @@ function CommentForm({ postID }) {
 
                 {
                     Object.keys(comments).map(function (comment) {
-                        return (<Comment key={comment} id={comment} post={postID} comment={comments[comment]} />);
+                        return (<Comment key={comment} id={comment} post={postID} comment={comments[comment].text} />);
                     })
                 }
 

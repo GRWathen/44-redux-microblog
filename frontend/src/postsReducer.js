@@ -1,10 +1,17 @@
-import { ADD_POST, UPDATE_POST, DELETE_POST } from "./actionTypes.js";
+import { LOAD_POST, ADD_POST, UPDATE_POST, DELETE_POST } from "./actionTypes.js";
 import { ADD_COMMENT, DELETE_COMMENT } from "./actionTypes.js";
 
 const INITIAL_STATE = {};
 
 function postsReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
+        case LOAD_POST: {
+            const newState = { ...state };
+            if (action.payload.post.id !== undefined) {
+                newState[action.payload.post.id] = action.payload.post;
+            }
+            return newState;
+        }
         case ADD_POST: {
             const obj = action.payload.obj;
             //obj["comments"] = {};

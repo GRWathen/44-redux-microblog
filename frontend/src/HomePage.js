@@ -8,7 +8,6 @@ import { getPosts } from "./actions.js";
 
 function HomePage() {
     const dispatch = useDispatch();
-
     const posts = useSelector(function (store) {
         return store.titles;
     });
@@ -24,11 +23,6 @@ function HomePage() {
             </div>
             <div>
                 {
-                    /*/
-                    Object.keys(posts).map(function (post) {
-                        return (<Post key={post} id={post} post={posts[post]} />);
-                    })
-                    //*/
                     posts.map(function (post) {
                         return (<Post key={post.id} id={post.id} post={post} />);
                     })

@@ -1,20 +1,43 @@
+import { useEffect, useState } from "react";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./PostView.css";
 
 import CommentForm from "./CommentForm.js";
-import { deletePost, deleteTitle } from "./actions.js";
+import { getPost, deletePost, deleteTitle } from "./actions.js";
 
 function PostView() {
-    const dispatch = useDispatch();
-    const posts = useSelector(function (store) {
-        return store.posts;
-    });
-
+    const [isLoading, setIsLoading] = useState(true);
     const history = useHistory();
     const { postID } = useParams();
-    if (posts[postID] === undefined) {
+
+    const dispatch = useDispatch();
+    const post = useSelector(function (store) {
+        return store.posts[postID];
+    });
+
+    useEffect(function () {
+        async function fetchPost() {
+            await dispatch(getPost(postID));
+            setIsLoading(false);
+        }
+
+        if (isLoading) {
+            fetchPost();
+        }
+
+    }, [dispatch, postID, post, isLoading]);
+
+    if (!Number(postID)) {
+        return (
+            <Redirect to="/" />
+        );
+    }
+
+    if (isLoading) return <b>Loading</b>;
+
+    if (post === undefined) {
         return (
             <Redirect to="/" />
         );
@@ -43,7 +66,7 @@ function PostView() {
         <div className="PostView">
             <div>
                 <span className="PostView-Title">
-                    {posts[postID].title}
+                    {post.title}
                 </span>
                 <span className="PostView-Edit">
                     <i className="fas fa-edit" onClick={edit}></i>
@@ -52,9 +75,9 @@ function PostView() {
                 </span>
             </div>
             <br />
-            <div className="PostView-Description">{posts[postID].description}</div>
+            <div className="PostView-Description">{post.description}</div>
             <br />
-            <div>{posts[postID].body}</div>
+            <div>{post.body}</div>
             <hr />
             <CommentForm postID={postID} />
         </div>
