@@ -14,7 +14,6 @@ function postsReducer(state = INITIAL_STATE, action) {
         }
         case ADD_POST: {
             const obj = action.payload.obj;
-            //obj["comments"] = {};
             const newState = { ...state, [action.payload.id]: obj };
             return newState;
         }
@@ -31,16 +30,15 @@ function postsReducer(state = INITIAL_STATE, action) {
         case ADD_COMMENT: {
             const newState = { ...state };
             const post = newState[action.payload.id];
-            let key = Date.now();
-            post["comments"][key] = action.payload.comment;
-            newState[action.payload.id] = post;
+            const id = (post.comments.length === 0) ? 1 : post.comments[post.comments.length-1].id +1;
+            post.comments.push({ "id": id, "text": action.payload.comment});
             return newState;
         }
+        // TODO: delete this?
         case DELETE_COMMENT: {
             const newState = { ...state };
-            const post = newState[action.payload.post];
-            delete post["comments"][action.payload.id];
-            newState[action.payload.post] = post;
+            // comment already deleted
+            // post will be reloaded with current comments
             return newState;
         }
         default: {

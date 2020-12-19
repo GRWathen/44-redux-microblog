@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./PostView.css";
 
 import CommentForm from "./CommentForm.js";
-import { getPost, deletePost, deleteTitle } from "./actions.js";
+import { getPost, deletePost, deleteTitle, addComment, deleteComment } from "./actions.js";
 
 function PostView() {
     const [isLoading, setIsLoading] = useState(true);
@@ -22,11 +22,9 @@ function PostView() {
             await dispatch(getPost(postID));
             setIsLoading(false);
         }
-
         if (isLoading) {
             fetchPost();
         }
-
     }, [dispatch, postID, post, isLoading]);
 
     if (!Number(postID)) {
@@ -62,6 +60,16 @@ function PostView() {
         });
     }
 
+    function add(comment) {
+        dispatch(addComment(postID, comment));
+        setIsLoading(true);
+    }
+
+    function removeComment(postID, id) {
+        dispatch(deleteComment(postID, id));
+        setIsLoading(true);
+    }
+
     return (
         <div className="PostView">
             <div>
@@ -79,7 +87,7 @@ function PostView() {
             <br />
             <div>{post.body}</div>
             <hr />
-            <CommentForm postID={postID} />
+            <CommentForm post={post} postID={postID} add={add} removeComment={removeComment} />
         </div>
     );
 }

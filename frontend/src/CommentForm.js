@@ -1,16 +1,11 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
 import "./CommentForm.css";
 
-import { addComment } from "./actions.js";
 import Comment from "./Comment.js";
 
-function CommentForm({ postID }) {
-    const dispatch = useDispatch();
-    const comments = useSelector(function (store) {
-        return store.posts[postID].comments;
-    });
+function CommentForm({ post, postID, add, removeComment }) {
+    const [isLoading, setIsLoading] = useState(true);
 
     const initialState = {
         "comment": ""
@@ -28,7 +23,7 @@ function CommentForm({ postID }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const { comment } = e.target;
-        dispatch(addComment(postID, comment.value));
+        add(comment.value);
         setFormData(initialState);
     }
 
@@ -49,8 +44,8 @@ function CommentForm({ postID }) {
                 <legend>Comments</legend>
 
                 {
-                    Object.keys(comments).map(function (comment) {
-                        return (<Comment key={comment} id={comment} post={postID} comment={comments[comment].text} />);
+                    post.comments.map(function (comment) {
+                        return (<Comment key={comment.id} id={comment.id} post={postID} comment={comment.text} removeComment={removeComment} />);
                     })
                 }
 

@@ -41,6 +41,12 @@ function gotPost(post) {
 }
 
 export function addPost(id, obj) {
+    return async function (dispatch) {
+        const res = await axios.post("http://localhost:5000/api/posts", obj);
+        return dispatch(addedPost(id, obj));
+    };
+}
+function addedPost(id, obj) {
     return {
         type: ADD_POST, payload: {
             "id": id,
@@ -50,6 +56,12 @@ export function addPost(id, obj) {
 }
 
 export function updatePost(id, post) {
+    return async function (dispatch) {
+        const res = await axios.put(`http://localhost:5000/api/posts/${id}`, post);
+        return dispatch(updatedPost(id, post));
+    };
+}
+function updatedPost(id, post) {
     return {
         type: UPDATE_POST, payload: {
             "id": id,
@@ -59,6 +71,12 @@ export function updatePost(id, post) {
 }
 
 export function deletePost(id) {
+    return async function (dispatch) {
+        const res = await axios.delete(`http://localhost:5000/api/posts/${id}`);
+        return dispatch(deletedPost(id));
+    };
+}
+function deletedPost(id) {
     return {
         type: DELETE_POST, payload: {
             "id": id
@@ -67,6 +85,12 @@ export function deletePost(id) {
 }
 
 export function addComment(id, comment) {
+    return async function (dispatch) {
+        const res = await axios.post(`http://localhost:5000/api/posts/${id}/comments`, { "text": comment });
+        return dispatch(addedComment(id, comment));
+    };
+}
+function addedComment(id, comment) {
     return {
         type: ADD_COMMENT, payload: {
             "id": id,
@@ -76,6 +100,12 @@ export function addComment(id, comment) {
 }
 
 export function deleteComment(post, id) {
+    return async function (dispatch) {
+        const res = await axios.delete(`http://localhost:5000/api/posts/${post}/comments/${id}`);
+        return dispatch(deletedComment(post, id));
+    };
+}
+function deletedComment(post, id) {
     return {
         type: DELETE_COMMENT, payload: {
             "post": post,
