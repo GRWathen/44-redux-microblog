@@ -1,14 +1,22 @@
 .Post {
   display: inline-block;
   border: solid 1px black;
-  padding: 1em;
   width: 200px;
   text-align: left;
   margin-right: 5px;;
   margin-bottom: 5px;;
 }
 
+.Post-Content {
+  padding: 1em;
+}
+
 .Post-Link {
   display: inline-block;
   margin-bottom: 1em;
+}
+
+.Post-Votes {
+  padding: 1em;
+  background-color: whitesmoke;
 }

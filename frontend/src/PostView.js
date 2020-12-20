@@ -6,6 +6,7 @@ import "./PostView.css";
 
 import CommentForm from "./CommentForm.js";
 import { getPost, deletePost, deleteTitle, addComment, deleteComment } from "./actions.js";
+import { increaseVote, decreaseVote } from "./actions.js";
 
 function PostView() {
     const [isLoading, setIsLoading] = useState(true);
@@ -70,6 +71,18 @@ function PostView() {
         setIsLoading(true);
     }
 
+    function voteUp() {
+        console.log("voteUp");
+        dispatch(increaseVote(postID));
+        setIsLoading(true);
+    }
+
+    function voteDown() {
+        console.log("voteDown");
+        dispatch(decreaseVote(postID));
+        setIsLoading(true);
+    }
+
     return (
         <div className="PostView">
             <div>
@@ -83,7 +96,17 @@ function PostView() {
                 </span>
             </div>
             <br />
-            <div className="PostView-Description">{post.description}</div>
+            <div>
+                <span className="PostView-Description">
+                    {post.description}
+                </span>
+                <span className="PostView-Votes">
+                    {post.votes} votes&nbsp;
+                    <i className="fas fa-thumbs-up" onClick={voteUp}></i>
+                    &nbsp;
+                    <i className="fas fa-thumbs-down" onClick={voteDown}></i>
+                </span>
+            </div>
             <br />
             <div>{post.body}</div>
             <hr />

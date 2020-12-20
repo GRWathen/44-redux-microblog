@@ -5,8 +5,6 @@ import "./CommentForm.css";
 import Comment from "./Comment.js";
 
 function CommentForm({ post, postID, add, removeComment }) {
-    const [isLoading, setIsLoading] = useState(true);
-
     const initialState = {
         "comment": ""
     }

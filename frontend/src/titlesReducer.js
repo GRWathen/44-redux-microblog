@@ -6,7 +6,7 @@ function titlesReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case LOAD_POSTS: {
             const newState = [...action.payload.posts];
-            return newState;
+            return sortByVote(newState);
         }
         case ADD_TITLE: {
             const obj = action.payload.obj;
@@ -30,3 +30,7 @@ function titlesReducer(state = INITIAL_STATE, action) {
 }
 
 export default titlesReducer;
+
+function sortByVote(posts) {
+    return posts.sort((a, b) => b.votes - a.votes);
+}

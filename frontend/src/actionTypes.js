@@ -8,3 +8,5 @@ export const DELETE_COMMENT = "DELETE_COMMENT";
 export const ADD_TITLE = "ADD_TITLE";
 export const UPDATE_TITLE = "UPDATE_TITLE";
 export const DELETE_TITLE = "DELETE_TITLE";
+export const INCREASE_VOTE = "INCREASE_VOTE";
+export const DECREASE_VOTE = "DECREASE_VOTE";

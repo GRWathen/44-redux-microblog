@@ -10,6 +10,8 @@ import { DELETE_COMMENT } from "./actionTypes.js";
 import { ADD_TITLE } from "./actionTypes.js";
 import { UPDATE_TITLE } from "./actionTypes.js";
 import { DELETE_TITLE } from "./actionTypes.js";
+import { INCREASE_VOTE } from "./actionTypes.js";
+import { DECREASE_VOTE } from "./actionTypes.js";
 
 export function getPosts() {
     return async function (dispatch) {
@@ -135,6 +137,34 @@ export function updateTitle(id, title) {
 export function deleteTitle(id) {
     return {
         type: DELETE_TITLE, payload: {
+            "id": id
+        }
+    };
+}
+
+export function increaseVote(id) {
+    return async function (dispatch) {
+        const res = await axios.post(`http://localhost:5000/api/posts/${id}/vote/up`);
+        return dispatch(increasedVote(id));
+    };
+}
+function increasedVote(id) {
+    return {
+        type: INCREASE_VOTE, payload: {
+            "id": id
+        }
+    };
+}
+
+export function decreaseVote(id) {
+    return async function (dispatch) {
+        const res = await axios.post(`http://localhost:5000/api/posts/${id}/vote/down`);
+        return dispatch(decreasedVote(id));
+    };
+}
+function decreasedVote(id) {
+    return {
+        type: DECREASE_VOTE, payload: {
             "id": id
         }
     };
